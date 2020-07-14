@@ -1,16 +1,8 @@
+<?php require_once('auth.php'); ?>
 <?php require_once('header.php'); ?>
 <body class="view">
 <div class="container inner">
-<header class="masthead mb-auto">
-    <div class="inner">
-      <h3 class="masthead-brand">TuneShare</h3>
-      <nav class="nav nav-masthead justify-content-center">
-        <a class="nav-link" href="index.php">Home</a>
-        <a class="nav-link" href="add.php">Share Your Tune</a>
-        <a class="nav-link" href="view.php">View Playlists</a>
-      </nav>
-    </div>
-  </header>
+<?php require_once('navigation.php'); ?>
     <?php
     try {
     //connect to our db 
