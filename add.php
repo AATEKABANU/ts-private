@@ -1,16 +1,7 @@
-<?php require_once('header.php'); ?>
+<?php require('header.php'); ?>
 <body class="add">
+<?php require('navigation.php'); ?>
 <div class="container inner">
-<header class="masthead mb-auto">
-    <div class="inner">
-      <h3 class="masthead-brand">TuneShare</h3>
-      <nav class="nav nav-masthead justify-content-center">
-        <a class="nav-link" href="index.php">Home</a>
-        <a class="nav-link" href="add.php">Share Your Tune</a>
-        <a class="nav-link" href="view.php">View Playlists</a>
-      </nav>
-    </div>
-  </header>
     <?php
     //initialize variables 
     $id = null; 
@@ -101,4 +92,4 @@
         <input type="submit" name="submit" value="Submit" class="btn">
       </form>
     </main>
-<?php require_once('footer.php'); ?>
+<?php require('footer.php'); ?>

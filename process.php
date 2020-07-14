@@ -1,16 +1,7 @@
 <?php require_once('header.php'); ?>
 <body class="add">
 <div class="container inner saved">
-<header class="masthead mb-auto">
-    <div class="inner">
-      <h3 class="masthead-brand">TuneShare</h3>
-      <nav class="nav nav-masthead justify-content-center">
-        <a class="nav-link" href="index.php">Home</a>
-        <a class="nav-link" href="add.php">Share Your Tune</a>
-        <a class="nav-link" href="view.php">View Playlists</a>
-      </nav>
-    </div>
-  </header>
+<?php require_once('navigation.php'); ?>
 <h1> TuneShare - Share Your Fave Tunes & Join The Community </h1>
 <main>
     <?php

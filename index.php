@@ -1,16 +1,7 @@
 <?php require_once('header.php'); ?>
   <body class="text-center">
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-  <header class="masthead mb-auto">
-    <div class="inner">
-      <h3 class="masthead-brand">TuneShare</h3>
-      <nav class="nav nav-masthead justify-content-center">
-        <a class="nav-link" href="index.php">Home</a>
-        <a class="nav-link" href="add.php">Share Your Tune</a>
-        <a class="nav-link" href="view.php">View Playlists</a>
-      </nav>
-    </div>
-  </header>
+    <?php require_once('navigation.php'); ?> 
 
   <main role="main" class="inner cover">
     <h1 class="cover-heading">Join The TuneShare Community.</h1>
@@ -21,11 +12,7 @@
       <a href="#" class="btn btn-lg btn-secondary orange">Browse Tunes </a>
     </p>
   </main>
-  <footer class="mastfoot mt-auto">
-    <div class="inner">
-      <p> &copy; Copyright <?php echo date('yy'); ?></p>
-    </div>
-  </footer>
+    <?php require_once('footer.php'); ?>
 </div>
 </body>
 </html>
