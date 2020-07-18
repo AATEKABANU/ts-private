@@ -7,21 +7,16 @@ $ok = true;
 
 // grab the information from the form and also validate 
 
-if(empty(trim($_POST['username']))) {
+$uname = trim(filter_input(INPUT_POST, 'username')); 
+$upassword = trim(filter_input(INPUT_POST, 'password'));
+
+if(empty($uname)) {
     echo "<p> Please provide your username! </p>"; 
     $ok = false; 
 }
-else {
-    $uname = trim($_POST['username']); 
-}
-
-
-if(empty(trim($_POST['password']))) {
+if(empty ($upassword)){
     echo "<p> Please provide your password! </p>"; 
     $ok = false; 
-}
-else {
-    $upassword = trim($_POST['password']); 
 }
 
 //validate the credentials 
@@ -32,28 +27,38 @@ if($ok === true ) {
     //prepare 
     $stmt = $db->prepare($sql); 
     //bind 
-    $stmt->bindParam(':username', $uname); 
+    $stmt->bindParam(":username", $uname); 
     //execute
     $stmt->execute(); 
+    //is the data present in the database? 
     if($stmt->rowCount() == 1){
+        //if so, let's fetch it 
         if($row = $stmt->fetch()) {
-            $id = $row['id']; 
-            $user_name = $row['username']; 
-            $hashed_password = $row['password']; 
-            if(password_verify($upassword, $hashed_password)) {
-                //password matches 
+            //use password verify to check the users password against the hash password 
+            if(password_verify($upassword, $row["password"])) {
+                //password matches, let's start a session; 
                 session_start(); 
-                $_SESSION['id'] = $id; 
-                $_SESSION['username'] = $user_name; 
+                //create session variables to store the user's name and user_id from the table 
+                $_SESSION["id"] = $row["id"];
+                $_SESSION["username"] = $row["username"];  
                 //direct user to restricted page 
-                header('location:view.php'); 
+                header("location:view.php"); 
             }
+            else {
+                echo "<p> Problem validating your password!</p>"; 
+            }
+        }
+        else {
+            echo "<p> Error accessing your data!</p>";  
         }
     }
     else {
-        echo "<p> Sorry something went wrong! </p>"; 
-    }
+        echo "<p> No user found!</p>"; 
+    } 
 }
-$stmt->closeCursor(); 
-
-?> 
+else {
+    echo "<p> Sorry something went wrong! </p>"; 
+}
+//close database connection
+$stmt->closeCursor();
+?>
